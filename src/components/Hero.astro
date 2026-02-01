@@ -1,0 +1,293 @@
+---
+
+---
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="hero-badge">🌿 Natural Healing</span>
+      <h1 class="hero-title">
+        Gentle Care for<br>
+        <span class="gradient-text">Better Health</span>
+      </h1>
+      <p class="hero-description">
+        Experience the power of homeopathy at GentleCure. Dr. Isha Tonk brings years of expertise 
+        to provide personalized, natural treatments that heal from within.
+      </p>
+      <div class="hero-cta">
+        <a href="/book-appointment" class="btn btn-primary">
+          Book Appointment
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#services" class="btn btn-secondary">
+          Our Services
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">1000+</span>
+          <span class="stat-label">Happy Patients</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Natural Care</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="card-icon">💊</div>
+          <div class="card-content">
+            <h4>Personalized Treatment</h4>
+            <p>Customized remedies for your unique needs</p>
+          </div>
+        </div>
+        <div class="hero-card card-2">
+          <div class="card-icon">🩺</div>
+          <div class="card-content">
+            <h4>Expert Consultation</h4>
+            <p>Detailed analysis & care plan</p>
+          </div>
+        </div>
+        <div class="hero-card card-3">
+          <div class="card-icon">🌱</div>
+          <div class="card-content">
+            <h4>Natural Remedies</h4>
+            <p>Safe, gentle & effective healing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--primary-pale) 0%, var(--cream) 100%);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+
+  .shape-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary-pale) 0%, transparent 70%);
+    top: -150px;
+    right: -100px;
+  }
+
+  .shape-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201, 168, 108, 0.15) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background: var(--white);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .hero-title {
+    font-size: 3.25rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--gray-300);
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .hero-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+  }
+
+  .hero-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-icon {
+    font-size: 1.75rem;
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-pale);
+    border-radius: var(--radius);
+  }
+
+  .card-content h4 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .card-content p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-description {
+      margin: 0 auto 2rem;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-stats {
+      justify-content: center;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 6rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stat-divider {
+      width: 40px;
+      height: 1px;
+    }
+  }
+</style>

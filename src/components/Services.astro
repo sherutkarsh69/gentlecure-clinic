@@ -1,0 +1,144 @@
+---
+const services = [
+  {
+    icon: "🌿",
+    title: "General Homeopathy",
+    description: "Comprehensive treatment for acute and chronic conditions using natural remedies tailored to your constitution."
+  },
+  {
+    icon: "🧒",
+    title: "Pediatric Care",
+    description: "Gentle, safe treatments for children's health issues including allergies, behavioral problems, and growth disorders."
+  },
+  {
+    icon: "👩",
+    title: "Women's Health",
+    description: "Specialized care for hormonal issues, PCOS, menstrual disorders, pregnancy support, and menopause symptoms."
+  },
+  {
+    icon: "🧠",
+    title: "Mental Wellness",
+    description: "Holistic support for anxiety, depression, stress, insomnia, and emotional well-being through natural healing."
+  },
+  {
+    icon: "🦴",
+    title: "Chronic Conditions",
+    description: "Long-term management of arthritis, diabetes, thyroid disorders, and other chronic health challenges."
+  },
+  {
+    icon: "🌸",
+    title: "Skin & Allergies",
+    description: "Natural treatment for eczema, psoriasis, acne, hair loss, and various allergic conditions."
+  }
+];
+---
+
+<section class="services section" id="services">
+  <div class="container">
+    <span class="section-badge">Our Expertise</span>
+    <h2 class="section-title">Healing Services</h2>
+    <p class="section-subtitle">
+      We offer comprehensive homeopathic treatments designed to address the root cause 
+      of your health concerns, not just the symptoms.
+    </p>
+
+    <div class="services-grid">
+      {services.map((service, index) => (
+        <article class="service-card" style={`--delay: ${index * 0.08}s`}>
+          <div class="service-icon">
+            <span>{service.icon}</span>
+          </div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-description">{service.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--white);
+  }
+
+  .section-badge {
+    display: block;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    position: relative;
+    background: var(--cream);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .service-card:hover {
+    background: var(--white);
+    border-color: var(--gray-200);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .service-card:hover .service-icon {
+    background: var(--primary-pale);
+    transform: scale(1.05);
+  }
+
+  .service-title {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

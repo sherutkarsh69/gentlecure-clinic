@@ -1,0 +1,160 @@
+---
+
+---
+
+<section class="contact section" id="contact">
+  <div class="container contact-container">
+    <div class="contact-info">
+      <span class="section-badge">Get In Touch</span>
+      <h2 class="contact-title">Visit Our Clinic</h2>
+      <p class="contact-description">
+        We're here to help you on your journey to better health.
+      </p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <h4>Address</h4>
+            <p>B-139, near Unique Lab Pathology,<br>B-Block, Lohia Nagar,<br>Ghaziabad, UP 201001</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <h4>Email</h4>
+            <p><a href="mailto:appointments@gentlecure.online">appointments@gentlecure.online</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-text">
+            <h4>Clinic Hours</h4>
+            <p>Mon - Sat: 10:00 AM - 8:00 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://maps.google.com/?q=B-139+Lohia+Nagar+Ghaziabad" target="_blank" class="btn btn-secondary">
+        📍 Get Directions
+      </a>
+    </div>
+
+    <div class="contact-map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.3!2d77.43!3d28.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDQwJzQ4LjAiTiA3N8KwMjUnNDguMCJF!5e0!3m2!1sen!2sin!4v1"
+        width="100%" height="400" style="border:0;" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { background: var(--cream); }
+  
+  .contact-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem; 
+    align-items: center; 
+  }
+  
+  .section-badge { 
+    display: inline-block; 
+    padding: 0.5rem 1.25rem; 
+    background: var(--primary-pale); 
+    color: var(--primary); 
+    border-radius: var(--radius); 
+    font-size: 0.85rem; 
+    font-weight: 500; 
+    margin-bottom: 1rem; 
+  }
+  
+  .contact-title { 
+    font-size: 2.5rem; 
+    color: var(--dark); 
+    margin-bottom: 1rem; 
+  }
+  
+  .contact-description { 
+    color: var(--text-light); 
+    font-size: 1.05rem; 
+    line-height: 1.7; 
+    margin-bottom: 2rem; 
+  }
+  
+  .contact-details { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.25rem; 
+    margin-bottom: 2rem; 
+  }
+  
+  .contact-item { 
+    display: flex; 
+    gap: 1rem; 
+    transition: var(--transition); 
+  }
+  
+  .contact-item:hover { 
+    transform: translateX(4px); 
+  }
+  
+  .contact-icon { 
+    width: 48px; 
+    height: 48px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: var(--white); 
+    border-radius: var(--radius); 
+    font-size: 1.35rem; 
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition); 
+  }
+  
+  .contact-item:hover .contact-icon { 
+    background: var(--primary-pale); 
+  }
+  
+  .contact-text h4 { 
+    font-family: var(--font-body); 
+    font-weight: 600; 
+    color: var(--dark); 
+    font-size: 0.95rem; 
+    margin-bottom: 0.2rem; 
+  }
+  
+  .contact-text p { 
+    color: var(--text-light); 
+    font-size: 0.9rem; 
+    line-height: 1.5; 
+  }
+  
+  .contact-text a { 
+    color: var(--primary); 
+    transition: var(--transition-fast); 
+  }
+  
+  .contact-text a:hover { 
+    color: var(--primary-dark); 
+  }
+
+  .contact-map {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .contact-map iframe {
+    display: block;
+  }
+  
+  @media (max-width: 1024px) { 
+    .contact-container { 
+      grid-template-columns: 1fr; 
+    } 
+  }
+</style>
