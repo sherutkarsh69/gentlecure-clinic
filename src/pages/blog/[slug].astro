@@ -1,0 +1,134 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import { articles } from '../../data/articles.js';
+
+export function getStaticPaths() {
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout title={article.title} description={article.excerpt}>
+  <Navbar />
+  <main>
+    <PageHero 
+      title={article.title} 
+      badge={article.category}
+    />
+
+    <section class="article-content section">
+      <div class="container container-sm">
+        <div class="article-meta reveal">
+          <span class="date">{article.date}</span>
+          <span class="dot">•</span>
+          <span class="read-time">{article.readTime}</span>
+        </div>
+
+        <div class="article-body reveal delay-100">
+          <p class="lead">{article.excerpt}</p>
+          
+          <h2>Understanding the Root Cause</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <blockquote>
+            "True healing comes from within. Homeopathy simply provides the key to unlock your body's natural ability to heal itself." - Dr. Isha Tonk
+          </blockquote>
+
+          <h2>The Homeopathic Approach</h2>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          
+          <ul>
+            <li>Focus on individual symptoms rather than generic diseases</li>
+            <li>Use of highly diluted, non-toxic natural substances</li>
+            <li>Stimulation of the body's vital force</li>
+            <li>No harmful side effects or dependency</li>
+          </ul>
+
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .container-sm {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .dot {
+    color: var(--gray-300);
+  }
+
+  .article-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .article-body h2 {
+    font-size: 1.85rem;
+    color: var(--dark);
+    margin: 3rem 0 1.5rem;
+  }
+
+  .article-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-body ul {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .article-body li {
+    margin-bottom: 0.75rem;
+    color: var(--text-light);
+  }
+
+  blockquote {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--primary);
+    font-style: italic;
+    padding: 2rem;
+    background: var(--primary-pale);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+    margin: 3rem 0;
+  }
+</style>

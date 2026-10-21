@@ -1,0 +1,224 @@
+---
+---
+
+<section class="doctor-intro section">
+  <div class="container doctor-container">
+    <div class="doctor-visual reveal-left">
+      <!-- Placeholder for Doctor Image -->
+      <div class="image-wrapper">
+        <div class="image-placeholder">
+          <span class="icon">👩‍⚕️</span>
+          <span>Dr. Isha Tonk</span>
+        </div>
+        <div class="experience-badge">
+          <span class="years">5+</span>
+          <span class="text">Years<br>Experience</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="doctor-content reveal-right">
+      <span class="section-badge">Meet Your Doctor</span>
+      <h2 class="doctor-title">Dr. Isha Tonk</h2>
+      <p class="doctor-subtitle">BHMS (Gold Medalist), MHA | Homeopathic Physician</p>
+      
+      <p class="doctor-description">
+        With a passion for natural healing and years of dedicated practice, I believe in treating 
+        the whole person, not just the disease. My approach combines traditional homeopathic 
+        principles with modern diagnostic insights to provide personalized care for every patient.
+      </p>
+
+      <div class="doctor-highlights">
+        <div class="highlight">
+          <span class="check">✓</span>
+          <span>BHMS Gold Medalist</span>
+        </div>
+        <div class="highlight">
+          <span class="check">✓</span>
+          <span>Specialist in Chronic Diseases</span>
+        </div>
+        <div class="highlight">
+          <span class="check">✓</span>
+          <span>Holistic Health Advocate</span>
+        </div>
+        <div class="highlight">
+          <span class="check">✓</span>
+          <span>Personalized Treatment Plans</span>
+        </div>
+      </div>
+
+      <div class="doctor-cta">
+        <a href="/doctor" class="btn btn-primary">
+          Read Full Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doctor-intro {
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .doctor-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .doctor-visual {
+    position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: var(--radius-xl);
+    padding-bottom: 120%; /* Aspect ratio */
+    background: var(--primary-pale);
+    overflow: hidden;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 1.25rem;
+    gap: 1rem;
+  }
+
+  .image-placeholder .icon {
+    font-size: 4rem;
+  }
+
+  .experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: 30px;
+    background: var(--white);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 2;
+  }
+
+  .years {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--dark);
+    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+
+  .doctor-title {
+    font-size: 2.75rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .doctor-subtitle {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .doctor-description {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .doctor-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--dark);
+  }
+
+  .check {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-light);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1024px) {
+    .doctor-container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      text-align: center;
+    }
+
+    .doctor-visual {
+      max-width: 450px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .doctor-highlights {
+      justify-content: center;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .doctor-title {
+      font-size: 2.25rem;
+    }
+
+    .doctor-highlights {
+      grid-template-columns: 1fr;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

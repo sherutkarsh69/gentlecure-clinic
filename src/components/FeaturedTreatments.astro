@@ -1,0 +1,114 @@
+---
+import TreatmentCard from './TreatmentCard.astro';
+import { treatments } from '../data/treatments.js';
+
+// Show first 3 treatments on homepage
+const featuredTreatments = treatments.slice(0, 3);
+---
+
+<section class="featured-treatments section" id="treatments">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-badge">Our Expertise</span>
+        <h2 class="section-title" style="text-align: left; margin-bottom: 0.5rem;">Healing Treatments</h2>
+        <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 600px;">
+          Comprehensive homeopathic treatments addressing the root cause of your health concerns, not just the symptoms.
+        </p>
+      </div>
+      <a href="/treatments" class="btn btn-secondary view-all-btn">
+        View All Treatments <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="treatments-grid">
+      {featuredTreatments.map((treatment, index) => (
+        <TreatmentCard 
+          title={treatment.title}
+          description={treatment.description}
+          icon={treatment.icon}
+          slug={treatment.slug}
+          delay={index * 100}
+        />
+      ))}
+    </div>
+    
+    <!-- Mobile view all button -->
+    <div class="mobile-cta reveal">
+      <a href="/treatments" class="btn btn-secondary">
+        View All Treatments <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-treatments {
+    background: var(--cream);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--white);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .mobile-cta {
+    display: none;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .treatments-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    
+    .view-all-btn {
+      display: none;
+    }
+    
+    .mobile-cta {
+      display: block;
+    }
+    
+    .treatments-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,123 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+import { testimonials } from '../data/testimonials.js';
+
+// Show only featured testimonials on homepage
+const featured = testimonials.filter(t => t.featured).slice(0, 3);
+---
+
+<section class="featured-testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-badge">Patient Stories</span>
+        <h2 class="section-title" style="text-align: left; margin-bottom: 0.5rem;">What Our Patients Say</h2>
+        <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 600px;">
+          Real experiences from real people who trusted us with their health journey.
+        </p>
+      </div>
+      <a href="/testimonials" class="btn btn-secondary view-all-btn">
+        View Case Studies <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="testimonials-grid">
+      {featured.map((t, index) => (
+        <TestimonialCard 
+          name={t.name}
+          condition={t.condition}
+          text={t.text}
+          rating={t.rating}
+          delay={index * 100}
+        />
+      ))}
+    </div>
+    
+    <!-- Mobile view all button -->
+    <div class="mobile-cta reveal">
+      <a href="/testimonials" class="btn btn-secondary">
+        View Case Studies <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-testimonials {
+    background: var(--white);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .mobile-cta {
+    display: none;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Hide the 3rd one on tablet to keep grid even */
+    .testimonials-grid > :nth-child(3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    
+    .view-all-btn {
+      display: none;
+    }
+    
+    .mobile-cta {
+      display: block;
+    }
+    
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .testimonials-grid > :nth-child(3) {
+      display: flex; /* Show it again on mobile */
+    }
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  slug: string;
+  delay?: number;
+}
+
+const { title, excerpt, date, category, slug, delay = 0 } = Astro.props;
+---
+
+<article class="blog-card reveal" style={`transition-delay: ${delay}ms`}>
+  <div class="card-meta">
+    <span class="category">{category}</span>
+    <span class="date">{date}</span>
+  </div>
+  <h3 class="card-title">
+    <a href={`/blog/${slug}`}>{title}</a>
+  </h3>
+  <p class="card-excerpt">{excerpt}</p>
+  <a href={`/blog/${slug}`} class="card-link">Read full article <span class="arrow">&rarr;</span></a>
+</article>
+
+<style>
+  .blog-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .blog-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+    border-color: var(--primary-pale);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .category {
+    background: var(--primary-pale);
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .card-title {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .card-title a {
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .card-title a:hover {
+    color: var(--primary);
+  }
+
+  .card-excerpt {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .card-link:hover .arrow {
+    transform: translateX(4px);
+  }
+</style>

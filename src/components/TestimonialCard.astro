@@ -1,0 +1,101 @@
+---
+export interface Props {
+  name: string;
+  condition: string;
+  text: string;
+  rating?: number;
+  delay?: number;
+}
+
+const { name, condition, text, rating = 5, delay = 0 } = Astro.props;
+---
+
+<article class="testimonial-card reveal" style={`transition-delay: ${delay}ms`}>
+  <div class="card-header">
+    <div class="avatar">{name.charAt(0)}</div>
+    <div class="meta">
+      <h4>{name}</h4>
+      <span class="condition">{condition}</span>
+    </div>
+  </div>
+  
+  <div class="rating">
+    {Array.from({ length: rating }).map(() => (
+      <span class="star">★</span>
+    ))}
+  </div>
+  
+  <blockquote>
+    "{text}"
+  </blockquote>
+</article>
+
+<style>
+  .testimonial-card {
+    background: var(--white);
+    padding: 2.25rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .meta h4 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .condition {
+    font-size: 0.85rem;
+    color: var(--primary-light);
+    font-weight: 500;
+  }
+
+  .rating {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .star {
+    color: #FBBF24;
+    font-size: 1.1rem;
+  }
+
+  blockquote {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-style: italic;
+    flex-grow: 1;
+  }
+</style>

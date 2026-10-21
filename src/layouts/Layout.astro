@@ -1,10 +1,38 @@
 ---
+import FloatingButtons from '../components/FloatingButtons.astro';
+
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
+  url?: string;
 }
 
-const { title, description = "GentleCure Homeopathic Clinic - Natural healing with Dr. Isha Tonk in Ghaziabad" } = Astro.props;
+const { 
+  title, 
+  description = "GentleCure Homeopathic Clinic - Natural healing with Dr. Isha Tonk in Ghaziabad",
+  image = "/og-image.jpg",
+  url = "https://gentlecure.online"
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "GentleCure Homeopathic Clinic",
+  "image": "https://gentlecure.online/logo.png",
+  "@id": "https://gentlecure.online",
+  "url": "https://gentlecure.online",
+  "telephone": "+919718102615",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "B-139, near Unique Lab Pathology, B-Block, Lohia Nagar",
+    "addressLocality": "Ghaziabad",
+    "addressRegion": "UP",
+    "postalCode": "201001",
+    "addressCountry": "IN"
+  },
+  "medicalSpecialty": "Homeopathic"
+};
 ---
 
 <!doctype html>
@@ -18,10 +46,44 @@ const { title, description = "GentleCure Homeopathic Clinic - Natural healing wi
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content={`${title} | GentleCure`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <title>{title} | GentleCure Homeopathic Clinic</title>
   </head>
   <body>
     <slot />
+    <FloatingButtons />
+
+    <script>
+      // Global intersection observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.reveal').forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
   </body>
 </html>
 
@@ -227,6 +289,46 @@ const { title, description = "GentleCure Homeopathic Clinic - Natural healing wi
   .animate-fade-in {
     animation: fadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
+
+  /* Reveal animations using Intersection Observer */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Delay utilities */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
 
   /* Gradient text */
   .gradient-text {

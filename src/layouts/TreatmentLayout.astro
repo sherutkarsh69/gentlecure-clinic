@@ -1,0 +1,222 @@
+---
+import Layout from './Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { treatments } from '../data/treatments.js';
+
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  slug: string;
+}
+
+const { title, description, icon, slug } = Astro.props;
+
+// Get other treatments for sidebar
+const otherTreatments = treatments.filter(t => t.slug !== slug);
+---
+
+<Layout title={`${title} Treatment`} description={description}>
+  <Navbar />
+  <main>
+    <PageHero 
+      title={title} 
+      subtitle={description}
+      badge={`${icon} Treatment`}
+    />
+
+    <section class="treatment-details section">
+      <div class="container">
+        <div class="layout-grid">
+          <div class="main-content">
+            <slot />
+
+            <div class="faqs-section reveal">
+              <h3>Frequently Asked Questions</h3>
+              <slot name="faqs" />
+            </div>
+          </div>
+
+          <aside class="sidebar">
+            <div class="sidebar-widget reveal-left">
+              <h3>Other Treatments</h3>
+              <ul class="treatment-links">
+                {otherTreatments.map(t => (
+                  <li>
+                    <a href={`/treatments/${t.slug}`}>
+                      <span class="icon">{t.icon}</span>
+                      <span class="text">{t.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="sidebar-widget cta-widget reveal-left delay-100">
+              <h3>Book a Consultation</h3>
+              <p>Discuss your health concerns with Dr. Isha Tonk.</p>
+              <a href="/book-appointment" class="btn btn-primary full-width">Book Now</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+
+  .main-content :global(h2) {
+    font-size: 2rem;
+    color: var(--primary);
+    margin: 2.5rem 0 1rem;
+  }
+  
+  .main-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .main-content :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .main-content :global(ul) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--text-light);
+  }
+
+  .main-content :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .faqs-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .faqs-section h3 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 120px;
+  }
+
+  .sidebar-widget {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  .sidebar-widget h3 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .treatment-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .treatment-links li {
+    margin-bottom: 0.75rem;
+  }
+
+  .treatment-links li:last-child {
+    margin-bottom: 0;
+  }
+
+  .treatment-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    transition: var(--transition-fast);
+  }
+
+  .treatment-links a:hover {
+    background: var(--primary-pale);
+    color: var(--primary);
+  }
+
+  .treatment-links .icon {
+    font-size: 1.25rem;
+  }
+
+  .treatment-links .text {
+    font-weight: 500;
+  }
+
+  .cta-widget {
+    background: var(--primary-pale);
+    border-color: transparent;
+    text-align: center;
+  }
+
+  .cta-widget h3 {
+    color: var(--primary);
+    border-color: rgba(1, 33, 105, 0.1);
+  }
+
+  .cta-widget p {
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .layout-grid {
+      grid-template-columns: 1fr 280px;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .layout-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+    }
+  }
+</style>

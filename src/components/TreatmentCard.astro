@@ -1,0 +1,95 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  slug: string;
+  delay?: number;
+}
+
+const { title, description, icon, slug, delay = 0 } = Astro.props;
+---
+
+<a href={`/treatments/${slug}`} class="treatment-card reveal" style={`transition-delay: ${delay}ms`}>
+  <div class="card-icon">{icon}</div>
+  <h3 class="card-title">{title}</h3>
+  <p class="card-desc">{description}</p>
+  <span class="card-link">Learn more <span class="arrow">&rarr;</span></span>
+</a>
+
+<style>
+  .treatment-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .treatment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-pale);
+  }
+
+  .card-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    border-radius: var(--radius);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+  }
+
+  .treatment-card:hover .card-icon {
+    background: var(--primary-pale);
+    transform: scale(1.05);
+  }
+
+  .card-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-desc {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+    transition: var(--transition-fast);
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .treatment-card:hover .card-link {
+    color: var(--primary-dark);
+  }
+
+  .treatment-card:hover .arrow {
+    transform: translateX(4px);
+  }
+</style>

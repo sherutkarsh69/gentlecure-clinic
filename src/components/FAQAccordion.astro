@@ -1,0 +1,122 @@
+---
+export interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-accordion">
+  <button class="faq-toggle" aria-expanded="false">
+    <span class="faq-question">{question}</span>
+    <span class="faq-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </span>
+  </button>
+  <div class="faq-content">
+    <div class="faq-inner">
+      <p>{answer}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .faq-accordion {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    background: var(--white);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .faq-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: var(--dark);
+    transition: background 0.2s ease;
+  }
+
+  .faq-toggle:hover {
+    background: var(--cream);
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-right: 1rem;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .minus {
+    display: none;
+  }
+
+  .faq-toggle[aria-expanded="true"] .plus {
+    display: none;
+  }
+
+  .faq-toggle[aria-expanded="true"] .minus {
+    display: block;
+  }
+
+  .faq-toggle[aria-expanded="true"] {
+    background: var(--primary-pale);
+    color: var(--primary);
+  }
+
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+  }
+
+  .faq-inner {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordions = document.querySelectorAll('.faq-toggle');
+    
+    accordions.forEach(acc => {
+      acc.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Optional: Close all other accordions (uncomment if you want one open at a time)
+        // accordions.forEach(a => {
+        //   a.setAttribute('aria-expanded', 'false');
+        //   a.nextElementSibling.style.maxHeight = null;
+        // });
+        
+        this.setAttribute('aria-expanded', !isExpanded);
+        
+        const content = this.nextElementSibling;
+        if (!isExpanded) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
+  });
+</script>

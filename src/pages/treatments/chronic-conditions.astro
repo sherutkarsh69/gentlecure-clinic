@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'chronic-conditions');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>Managing chronic conditions can be exhausting, often requiring lifelong medication that only manages symptoms while causing side effects. Homeopathy offers a different approach. By stimulating the body's self-healing mechanisms, we aim to reduce the severity of chronic diseases, improve quality of life, and in many cases, halt the progression of the disease.</p>
+    
+    <h2>Common Conditions Treated</h2>
+    <ul>
+      <li>Rheumatoid Arthritis and Osteoarthritis</li>
+      <li>Diabetes (management and complication prevention)</li>
+      <li>Hypertension (High Blood Pressure)</li>
+      <li>Asthma and Chronic Bronchitis</li>
+      <li>Autoimmune disorders</li>
+      <li>Chronic Fatigue Syndrome</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>Chronic conditions require patience and a deep understanding of the patient's constitution. Dr. Isha Tonk meticulously analyzes your medical history, genetic predispositions, and lifestyle factors. The prescribed homeopathic remedies work deeply at a systemic level to reduce inflammation, improve organ function, and strengthen immunity, gradually restoring the body to a state of balance.</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="Can homeopathy cure chronic diseases?"
+      answer="While the term 'cure' depends on the stage and irreversibility of the disease, homeopathy can significantly manage symptoms, halt disease progression, and greatly improve your quality of life. In many early-stage chronic conditions, near-complete remission is possible."
+    />
+    <FAQAccordion 
+      question="How often will I need follow-up appointments?"
+      answer="For chronic conditions, follow-up appointments are usually scheduled every 3 to 4 weeks. This allows Dr. Tonk to assess your progress, monitor any changes in symptoms, and adjust the potency or remedy as your body heals."
+    />
+    <FAQAccordion 
+      question="Will I need to stop my allopathic medicines?"
+      answer="No, you should never stop conventional medicines abruptly, especially for conditions like Diabetes or Hypertension. Homeopathy can be taken alongside them. As your health improves, your primary physician can safely taper down your allopathic dosages."
+    />
+  </Fragment>
+</TreatmentLayout>

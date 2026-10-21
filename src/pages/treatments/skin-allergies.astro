@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'skin-allergies');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>Skin conditions are often treated topically with creams and ointments that only suppress the problem temporarily. In homeopathy, we understand that skin issues and allergies are external manifestations of internal imbalances, immune system disorders, or accumulated toxins.</p>
+    
+    <h2>Common Conditions Treated</h2>
+    <ul>
+      <li>Eczema and Dermatitis</li>
+      <li>Psoriasis</li>
+      <li>Acne and Rosacea</li>
+      <li>Urticaria (Hives) and skin allergies</li>
+      <li>Fungal infections and Warts</li>
+      <li>Hair loss (Alopecia) and severe dandruff</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>Our approach is strictly internal. We do not use suppressive medicated creams. Dr. Isha Tonk evaluates your overall health, digestive system, stress levels, and genetic history to find the root cause of your skin flare-ups. The oral homeopathic remedies work from the inside out to purify the system, balance immunity, and promote healthy, clear skin permanently.</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="Why did my skin condition slightly worsen after starting treatment?"
+      answer="In homeopathy, there is sometimes a 'homeopathic aggravation' where symptoms briefly intensify as the body pushes out toxins. This is a positive sign that the remedy is working from the inside out. It is temporary and is followed by significant improvement."
+    />
+    <FAQAccordion 
+      question="Can homeopathy cure severe psoriasis?"
+      answer="Yes, homeopathy has a very high success rate in treating Psoriasis. Since Psoriasis is an autoimmune condition, homeopathic remedies work by correcting the immune system dysfunction rather than just treating the skin lesions."
+    />
+    <FAQAccordion 
+      question="Do you provide any creams or ointments?"
+      answer="We generally rely on internal oral medicines to cure the root cause. Occasionally, a non-medicated, natural homeopathic ointment (like Calendula) may be provided solely for soothing dry or cracked skin, but it is not the primary treatment."
+    />
+  </Fragment>
+</TreatmentLayout>

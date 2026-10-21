@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import { faqs } from '../data/faqs.js';
+---
+
+<Layout title="FAQ" description="Frequently Asked Questions about Homeopathy and GentleCure Clinic.">
+  <Navbar />
+  <main>
+    <PageHero 
+      title="Frequently Asked Questions" 
+      subtitle="Find answers to common questions about homeopathic treatment, our clinic, and appointments."
+      badge="Got Questions?"
+    />
+
+    <section class="faq-section section">
+      <div class="container">
+        <div class="faq-container reveal">
+          {faqs.map((category) => (
+            <div class="faq-category">
+              <h2>{category.category}</h2>
+              <div class="faq-list">
+                {category.questions.map(q => (
+                  <FAQAccordion question={q.q} answer={q.a} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .faq-section {
+    background: var(--cream);
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-category {
+    margin-bottom: 3rem;
+  }
+
+  .faq-category:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-category h2 {
+    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-pale);
+  }
+</style>

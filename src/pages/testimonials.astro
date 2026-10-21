@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CaseResultCard from '../components/CaseResultCard.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import { testimonials } from '../data/testimonials.js';
+import { caseResults } from '../data/caseResults.js';
+---
+
+<Layout
+  title="Case Studies"
+  description="Explore real before-and-after case results and patient success stories from Dr. Isha Tonk's Gentle Cure Homoeopathic Clinic."
+>
+  <Navbar />
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <section class="cs-hero">
+      <div class="cs-hero__inner container">
+        <span class="cs-hero__badge">Gentle Cure Homoeopathic Clinic</span>
+        <h1 class="cs-hero__title">Case Studies &amp; Patient Stories</h1>
+        <p class="cs-hero__sub">
+          Real journeys. Real results. Explore documented cases treated by Dr. Isha Tonk
+          and read what our patients have to say about their experience.
+        </p>
+
+        <!-- Pill tab bar -->
+        <div class="tab-bar" role="tablist">
+          <button
+            class="tab-pill tab-pill--active"
+            id="tab-cases"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-cases"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Clinical Cases
+          </button>
+          <button
+            class="tab-pill"
+            id="tab-testimonials"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-testimonials"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Patient Testimonials
+          </button>
+        </div>
+      </div>
+
+      <!-- Decorative blobs -->
+      <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+      <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ── Cases Panel ───────────────────────────────────── -->
+    <section
+      class="panel section"
+      id="panel-cases"
+      role="tabpanel"
+      aria-labelledby="tab-cases"
+    >
+      <div class="container">
+        <div class="cases-stack">
+          {caseResults.map((c, index) => (
+            <CaseResultCard
+              id={c.id}
+              condition={c.condition}
+              title={c.title}
+              duration={c.duration}
+              date={c.date}
+              image={c.image}
+              imageBefore={c.imageBefore}
+              imageAfter={c.imageAfter}
+              overview={c.overview}
+              approach={c.approach}
+              outcome={c.outcome}
+              keyPoints={c.keyPoints}
+              reverse={index % 2 !== 0}
+              delay={0}
+            />
+          ))}
+        </div>
+
+        <p class="disclaimer">
+          Individual results may vary. All images are shared with full patient consent and are for informational purposes only.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Testimonials Panel ────────────────────────────── -->
+    <section
+      class="panel section panel--hidden"
+      id="panel-testimonials"
+      role="tabpanel"
+      aria-labelledby="tab-testimonials"
+    >
+      <div class="container">
+        <div class="testimonials-grid">
+          {testimonials.map((t, index) => (
+            <TestimonialCard
+              name={t.name}
+              condition={t.condition}
+              text={t.text}
+              rating={t.rating}
+              delay={(index % 3) * 100}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection
+      title="Ready to Start Your Own Healing Journey?"
+      description="Book a consultation with Dr. Isha Tonk today and take the first step towards lasting, natural health."
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<!-- Tab switching logic -->
+<script is:inline>
+  const tabs = document.querySelectorAll('.tab-pill');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('aria-controls');
+
+      // Update tabs
+      tabs.forEach(t => {
+        t.classList.remove('tab-pill--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('tab-pill--active');
+      tab.setAttribute('aria-selected', 'true');
+
+      // Update panels
+      panels.forEach(panel => {
+        if (panel.id === targetId) {
+          panel.classList.remove('panel--hidden');
+          panel.classList.add('panel--visible');
+        } else {
+          panel.classList.add('panel--hidden');
+          panel.classList.remove('panel--visible');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ───────────────────────────────────────────── */
+  .cs-hero {
+    position: relative;
+    background: linear-gradient(160deg, var(--cream) 0%, #fff 70%);
+    padding: 9rem 0 4.5rem;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cs-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cs-hero__badge {
+    display: inline-block;
+    padding: 0.4rem 1.1rem;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .cs-hero__title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .cs-hero__sub {
+    max-width: 600px;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* Decorative blobs */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-blob--1 {
+    width: 400px; height: 400px;
+    background: var(--primary-pale);
+    top: -120px; left: -100px;
+  }
+  .hero-blob--2 {
+    width: 300px; height: 300px;
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    bottom: -80px; right: -60px;
+  }
+
+  /* ── Tab bar ────────────────────────────────────────── */
+  .tab-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    padding: 0.35rem;
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+  }
+
+  .tab-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+  }
+
+  .tab-pill svg { opacity: 0.65; transition: opacity 0.22s; }
+
+  .tab-pill:hover:not(.tab-pill--active) {
+    color: var(--text-dark);
+    background: var(--gray-100);
+  }
+
+  .tab-pill--active {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 2px 12px color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+
+  .tab-pill--active svg { opacity: 1; }
+
+  /* ── Panels ─────────────────────────────────────────── */
+  .panel {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+  }
+
+  .panel--hidden {
+    display: none;
+  }
+
+  /* ── Cases stack ─────────────────────────────────────── */
+  .cases-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .disclaimer {
+    margin: 3rem auto 0;
+    max-width: 720px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── Testimonials grid ───────────────────────────────── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .cs-hero { padding: 7.5rem 0 3rem; }
+    .tab-pill { padding: 0.5rem 1rem; font-size: 0.82rem; }
+  }
+
+  @media (max-width: 640px) {
+    .tab-bar { flex-direction: column; border-radius: var(--radius-lg); }
+    .tab-pill { width: 100%; justify-content: center; border-radius: var(--radius); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'pediatric-care');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>Children respond exceptionally well to homeopathic treatments. Because homeopathic remedies are natural, gentle, and have no side effects, they are the ideal choice for infants and growing children. Our pediatric care focuses on strengthening your child's immunity so they can fight off illnesses naturally.</p>
+    
+    <h2>Common Pediatric Conditions Treated</h2>
+    <ul>
+      <li>Teething troubles and colic in infants</li>
+      <li>Recurrent colds, coughs, and tonsillitis</li>
+      <li>Childhood asthma and respiratory allergies</li>
+      <li>Skin conditions like eczema and diaper rash</li>
+      <li>Behavioral issues (ADHD, temper tantrums, anxiety)</li>
+      <li>Growth and development delays</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>We understand that treating children requires patience and a gentle touch. Dr. Isha Tonk creates a comfortable environment for your child during the consultation. We look at the child's physical symptoms along with their temperament, sleep patterns, and dietary habits to select the perfect remedy. Kids also love our sweet-tasting medicines, making treatment entirely stress-free for parents!</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="Are the medicines safe for newborns?"
+      answer="Absolutely. Homeopathic medicines are highly diluted and completely non-toxic, making them perfectly safe for newborns and infants when prescribed by a qualified practitioner."
+    />
+    <FAQAccordion 
+      question="How do I give the medicine to my toddler?"
+      answer="The sweet pills can easily be placed directly on the tongue. For very young infants, the pills can be dissolved in a small amount of water or breast milk."
+    />
+    <FAQAccordion 
+      question="Can homeopathy help with my child's recurring ear infections?"
+      answer="Yes, homeopathy is highly effective in treating recurring ear infections. Rather than just treating the current infection, the remedies work to boost your child's overall immunity, significantly reducing the frequency and severity of future infections."
+    />
+  </Fragment>
+</TreatmentLayout>

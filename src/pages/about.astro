@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About Us" description="Learn about GentleCure Homeopathic Clinic and our mission to provide natural healing.">
+  <Navbar />
+  <main>
+    <PageHero 
+      title="About GentleCure" 
+      subtitle="Discover our story, our mission, and why we believe in the power of natural healing."
+      badge="Our Story"
+    />
+
+    <section class="about-content section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text reveal-left">
+            <h2>Our Mission</h2>
+            <p>At GentleCure, our mission is to provide safe, effective, and personalized homeopathic care to individuals and families. We believe that true health is not merely the absence of disease, but a state of complete physical, mental, and emotional well-being.</p>
+            
+            <h2>The GentleCure Philosophy</h2>
+            <p>We practice classical homeopathy, treating the individual as a whole. Rather than suppressing symptoms with harsh chemicals, we use natural remedies to stimulate the body's own innate healing mechanisms.</p>
+            <p>Every patient who walks through our doors is unique. That's why we spend significant time during our consultations listening to your story, understanding your health history, and identifying the root cause of your ailments.</p>
+
+            <div class="core-values">
+              <h3>Our Core Values</h3>
+              <ul>
+                <li><strong>Compassion:</strong> We listen without judgment and care deeply about your well-being.</li>
+                <li><strong>Integrity:</strong> We provide honest assessments and ethical treatments.</li>
+                <li><strong>Excellence:</strong> We continuously update our knowledge to offer the best care.</li>
+                <li><strong>Holism:</strong> We treat the person, not just the disease.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="about-visual reveal-right">
+            <div class="image-grid">
+              <div class="img-placeholder tall">
+                <span class="icon">🏥</span>
+                <span>Modern Clinic</span>
+              </div>
+              <div class="img-placeholder short">
+                <span class="icon">🌿</span>
+                <span>Natural Medicine</span>
+              </div>
+              <div class="img-placeholder short">
+                <span class="icon">🤝</span>
+                <span>Patient Care</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .about-text h2:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .core-values {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+  }
+
+  .core-values h3 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .core-values ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .core-values li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+
+  .core-values strong {
+    color: var(--primary);
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .img-placeholder {
+    background: var(--primary-pale);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-weight: 500;
+    gap: 0.75rem;
+  }
+
+  .img-placeholder .icon {
+    font-size: 2.5rem;
+  }
+
+  .tall {
+    grid-row: span 2;
+    min-height: 400px;
+  }
+
+  .short {
+    min-height: 190px;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-visual {
+      order: -1;
+    }
+    
+    .tall {
+      min-height: 300px;
+    }
+  }
+</style>

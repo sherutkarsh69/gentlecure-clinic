@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'general-homeopathy');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>General homeopathy addresses a wide spectrum of acute and chronic health conditions by treating the individual as a whole, rather than focusing solely on isolated symptoms. At GentleCure, we employ constitutional prescribing, meaning the remedy is selected based on your unique physical, mental, and emotional characteristics.</p>
+    
+    <h2>Common Conditions Treated</h2>
+    <ul>
+      <li>Respiratory issues (Asthma, Bronchitis, recurrent colds)</li>
+      <li>Digestive disorders (Acidity, IBS, Constipation)</li>
+      <li>Viral and bacterial infections</li>
+      <li>Sleep disorders and insomnia</li>
+      <li>Headaches and migraines</li>
+      <li>Low immunity and frequent illnesses</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>Dr. Isha Tonk begins with a comprehensive consultation to understand your complete health history. This detailed case-taking process helps identify the root cause of your ailment. We then prescribe gentle, highly-diluted natural remedies that stimulate your body's innate healing mechanisms without causing harmful side effects.</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="How long does it take to see results?"
+      answer="For acute conditions like a recent cold or fever, results can often be seen within hours to a few days. For chronic, long-standing issues, it may take several weeks or months of consistent treatment to experience lasting relief."
+    />
+    <FAQAccordion 
+      question="Is it safe to take alongside conventional medicine?"
+      answer="Yes, homeopathic remedies can safely be taken alongside most conventional (allopathic) medications without negative interactions. We advise you to never stop your prescribed conventional medicines abruptly without consulting your doctor."
+    />
+    <FAQAccordion 
+      question="Do I need to follow a strict diet?"
+      answer="Generally, a healthy, balanced diet is recommended. Certain strong-smelling foods like raw onion, garlic, or excessive coffee might interfere with specific remedies. Dr. Tonk will advise you if any particular dietary restrictions apply to your treatment."
+    />
+  </Fragment>
+</TreatmentLayout>

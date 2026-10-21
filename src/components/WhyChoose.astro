@@ -1,0 +1,139 @@
+---
+const features = [
+  {
+    icon: "🤝",
+    title: "Personalized Care",
+    desc: "Every patient receives a unique treatment plan tailored to their specific health profile and history."
+  },
+  {
+    icon: "🏅",
+    title: "Expert Doctor",
+    desc: "Treated by Dr. Isha Tonk, a Gold Medalist (BHMS) with extensive experience in homeopathic healing."
+  },
+  {
+    icon: "🌱",
+    title: "100% Natural",
+    desc: "Safe, non-toxic medicines with zero side effects, suitable for all ages including infants and seniors."
+  },
+  {
+    icon: "⚕️",
+    title: "Holistic Approach",
+    desc: "We treat the root cause of your illness, not just the symptoms, ensuring long-term health and well-being."
+  }
+];
+---
+
+<section class="why-choose section">
+  <div class="container">
+    <div class="header text-center reveal">
+      <span class="section-badge">Why GentleCure</span>
+      <h2 class="section-title">A Better Way to Heal</h2>
+      <p class="section-subtitle">
+        Discover the GentleCure difference. We combine traditional wisdom with modern clinical expertise to provide the best homeopathic care.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      {features.map((feature, index) => (
+        <div class="feature-card reveal" style={`transition-delay: ${index * 100}ms`}>
+          <div class="icon-wrapper">
+            <span class="icon">{feature.icon}</span>
+          </div>
+          <h3>{feature.title}</h3>
+          <p>{feature.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-choose {
+    background-color: var(--white);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--primary-pale);
+    color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--cream);
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .feature-card:hover {
+    background: var(--white);
+    border-color: var(--gray-200);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+  }
+
+  .icon-wrapper {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .feature-card:hover .icon-wrapper {
+    background: var(--primary-pale);
+    transform: scale(1.1);
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+  }
+
+  p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

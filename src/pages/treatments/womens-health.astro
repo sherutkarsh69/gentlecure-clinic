@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'womens-health');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>Women's bodies undergo complex hormonal changes throughout their lives, from puberty through pregnancy and into menopause. Homeopathy offers a safe, natural, and highly effective way to balance these hormones and address gynecological issues without the need for synthetic hormones or invasive procedures.</p>
+    
+    <h2>Common Conditions Treated</h2>
+    <ul>
+      <li>PCOS (Polycystic Ovary Syndrome) and PCOD</li>
+      <li>Menstrual irregularities (painful, heavy, or absent periods)</li>
+      <li>PMS (Premenstrual Syndrome) and mood swings</li>
+      <li>Thyroid imbalances (Hypo and Hyperthyroidism)</li>
+      <li>Menopause symptoms (hot flashes, insomnia, anxiety)</li>
+      <li>Uterine fibroids and ovarian cysts</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>At GentleCure, we provide a safe, confidential space to discuss your health concerns. Dr. Isha Tonk approaches women's health holistically, recognizing that hormonal imbalances are often linked to stress, lifestyle, and emotional well-being. By treating the whole person, our remedies help your body naturally regulate its endocrine system, restoring rhythm and balance to your health.</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="Can homeopathy cure PCOS?"
+      answer="Homeopathy offers excellent results in managing and treating PCOS. The remedies work to correct the underlying hormonal imbalance, regulate menstrual cycles, and address associated symptoms like weight gain, acne, and hair growth. It requires a few months of consistent treatment."
+    />
+    <FAQAccordion 
+      question="Is homeopathy safe during pregnancy?"
+      answer="Yes, homeopathic remedies are completely safe during pregnancy and breastfeeding. They can safely manage common pregnancy complaints like morning sickness, heartburn, backache, and emotional fluctuations without harming the baby."
+    />
+    <FAQAccordion 
+      question="How does homeopathy help with menopause?"
+      answer="Homeopathy helps ease the transition of menopause by balancing hormones naturally. It is highly effective for reducing the intensity and frequency of hot flashes, night sweats, mood swings, and vaginal dryness without the risks associated with Hormone Replacement Therapy (HRT)."
+    />
+  </Fragment>
+</TreatmentLayout>

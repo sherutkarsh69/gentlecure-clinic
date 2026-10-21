@@ -1,0 +1,234 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Dr. Isha Tonk" description="Learn about Dr. Isha Tonk, Gold Medalist Homeopathic Physician at GentleCure.">
+  <Navbar />
+  <main>
+    <PageHero 
+      title="Meet Dr. Isha Tonk" 
+      subtitle="BHMS (Gold Medalist), MHA | Dedicated to healing you naturally."
+      badge="Our Doctor"
+    />
+
+    <section class="doctor-profile section">
+      <div class="container">
+        <div class="profile-grid">
+          <div class="profile-visual reveal-left">
+            <div class="image-wrapper">
+              <div class="image-placeholder">
+                <span class="icon">👩‍⚕️</span>
+                <span>Dr. Isha Tonk</span>
+              </div>
+            </div>
+            
+            <div class="quick-facts">
+              <div class="fact">
+                <span class="fact-icon">🎓</span>
+                <div class="fact-text">
+                  <strong>Education</strong>
+                  <span>BHMS, MHA</span>
+                </div>
+              </div>
+              <div class="fact">
+                <span class="fact-icon">⭐</span>
+                <div class="fact-text">
+                  <strong>Experience</strong>
+                  <span>5+ Years</span>
+                </div>
+              </div>
+              <div class="fact">
+                <span class="fact-icon">🗣️</span>
+                <div class="fact-text">
+                  <strong>Languages</strong>
+                  <span>English, Hindi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-content reveal-right">
+            <h2>A Passion for Natural Healing</h2>
+            <p>Dr. Isha Tonk is a distinguished homeopathic physician known for her compassionate approach and excellent clinical acumen. As a Gold Medalist in her Bachelor of Homeopathic Medicine and Surgery (BHMS), she brings a deep understanding of classical homeopathy combined with modern medical knowledge.</p>
+            
+            <p>Her journey into homeopathy began with a profound desire to treat patients without subjecting them to the harsh side effects of conventional medicines. She believes that the human body has an incredible capacity to heal itself when given the right gentle stimulus.</p>
+
+            <h2>Areas of Expertise</h2>
+            <ul class="expertise-list">
+              <li><strong>Women's Health:</strong> PCOS, Menstrual Irregularities, Menopause</li>
+              <li><strong>Pediatric Care:</strong> Immunity building, Allergies, Behavioral issues</li>
+              <li><strong>Skin Conditions:</strong> Eczema, Psoriasis, Acne, Hair Loss</li>
+              <li><strong>Chronic Diseases:</strong> Arthritis, Asthma, Thyroid disorders</li>
+              <li><strong>Mental Wellness:</strong> Anxiety, Stress, Depression, Insomnia</li>
+            </ul>
+
+            <h2>My Treatment Philosophy</h2>
+            <blockquote>
+              "I don't just treat the disease; I treat the person who has the disease. Every symptom is a language of the body expressing an internal imbalance. My goal is to understand that language and prescribe a remedy that restores perfect harmony."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: var(--radius-xl);
+    padding-bottom: 120%; /* Aspect ratio */
+    background: var(--primary-pale);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 1.25rem;
+    gap: 1rem;
+  }
+
+  .image-placeholder .icon {
+    font-size: 4rem;
+  }
+
+  .quick-facts {
+    background: var(--cream);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .fact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .fact-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .fact-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact-text strong {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .fact-text span {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.05rem;
+  }
+
+  .profile-content h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .profile-content h2:not(:first-child) {
+    margin-top: 3rem;
+  }
+
+  .profile-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .expertise-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .expertise-list li {
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  .expertise-list li:hover {
+    border-color: var(--primary-pale);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(5px);
+  }
+
+  .expertise-list strong {
+    color: var(--dark);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  blockquote {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--primary);
+    font-style: italic;
+    padding: 2rem;
+    background: var(--primary-pale);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .profile-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .profile-visual {
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+</style>

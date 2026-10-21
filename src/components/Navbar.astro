@@ -1,11 +1,13 @@
 ---
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Treatments", href: "#treatments" },
-  { name: "About", href: "#about" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Contact", href: "#contact" },
+  { name: "Treatments", href: "/treatments" },
+  { name: "About", href: "/about" },
+  { name: "Case Studies", href: "/testimonials" },
+  { name: "Contact", href: "/contact" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="navbar" id="navbar">
@@ -26,7 +28,14 @@ const navLinks = [
 
     <ul class="nav-links" id="navLinks">
       {navLinks.map((link) => (
-        <li><a href={link.href} class="nav-link">{link.name}</a></li>
+        <li>
+          <a 
+            href={link.href} 
+            class={`nav-link ${currentPath === link.href || (currentPath.startsWith('/treatments') && link.href === '/treatments') ? 'active' : ''}`}
+          >
+            {link.name}
+          </a>
+        </li>
       ))}
       <li>
         <a href="/book-appointment" class="btn btn-primary nav-cta">
@@ -125,11 +134,13 @@ const navLinks = [
     transition: var(--transition);
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link.active::after {
     width: 100%;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.active {
     color: var(--primary);
   }
 

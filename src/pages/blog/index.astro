@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import PageHero from '../../components/PageHero.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import { articles } from '../../data/articles.js';
+---
+
+<Layout title="Health Blog & Tips" description="Read the latest articles on homeopathy, health, and natural living from Dr. Isha Tonk.">
+  <Navbar />
+  <main>
+    <PageHero 
+      title="Health Blog & Tips" 
+      subtitle="Insights, advice, and the latest news on natural healing and homeopathic care."
+      badge="Our Blog"
+    />
+
+    <section class="blog-section section">
+      <div class="container">
+        <div class="blog-grid">
+          {articles.map((article, index) => (
+            <BlogCard 
+              title={article.title}
+              excerpt={article.excerpt}
+              date={article.date}
+              category={article.category}
+              slug={article.slug}
+              delay={index * 100}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection 
+      title="Subscribe to Our Newsletter" 
+      description="Get the latest health tips and natural healing advice delivered straight to your inbox."
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-section {
+    background: var(--cream);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

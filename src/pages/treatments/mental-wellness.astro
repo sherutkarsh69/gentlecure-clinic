@@ -1,0 +1,47 @@
+---
+import TreatmentLayout from '../../layouts/TreatmentLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import { treatments } from '../../data/treatments.js';
+
+const treatment = treatments.find(t => t.slug === 'mental-wellness');
+---
+
+<TreatmentLayout 
+  title={treatment.title}
+  description={treatment.description}
+  icon={treatment.icon}
+  slug={treatment.slug}
+>
+  <div class="reveal">
+    <h2>Overview</h2>
+    <p>Mental and emotional health is just as important as physical health. In homeopathy, we recognize that the mind and body are deeply interconnected. True healing must address psychological distress, stress, and emotional trauma, which often manifest as physical symptoms.</p>
+    
+    <h2>Common Conditions Treated</h2>
+    <ul>
+      <li>Anxiety and Panic Attacks</li>
+      <li>Depression and prolonged sadness</li>
+      <li>Chronic stress and burnout</li>
+      <li>Insomnia and sleep disorders</li>
+      <li>Grief and emotional trauma</li>
+      <li>Phobias and OCD (Obsessive-Compulsive Disorder)</li>
+    </ul>
+
+    <h2>Our Treatment Approach</h2>
+    <p>We provide a compassionate, non-judgmental environment for you to share your feelings. Dr. Isha Tonk will ask detailed questions about your emotional state, fears, dreams, and life stressors. Homeopathic remedies are then carefully selected to help balance your nervous system, calm your mind, and restore emotional resilience naturally, without the risk of dependency or numbing side effects common with psychiatric drugs.</p>
+  </div>
+
+  <Fragment slot="faqs">
+    <FAQAccordion 
+      question="Are homeopathic medicines habit-forming?"
+      answer="No, homeopathic medicines for mental wellness are completely non-addictive and non-habit forming. They do not cause the grogginess, weight gain, or withdrawal symptoms associated with many conventional psychiatric medications."
+    />
+    <FAQAccordion 
+      question="Can I take homeopathy if I am already on antidepressants?"
+      answer="Yes, you can safely start homeopathic treatment alongside your current antidepressants. As your condition improves under homeopathic care, your psychiatrist may gradually reduce the dosage of your conventional medication."
+    />
+    <FAQAccordion 
+      question="How does homeopathy treat anxiety?"
+      answer="Homeopathy treats anxiety by addressing the unique triggers and physical symptoms experienced by the individual. Instead of suppressing the nervous system, the remedies stimulate the body to self-regulate, reducing the intensity and frequency of anxiety attacks over time."
+    />
+  </Fragment>
+</TreatmentLayout>
