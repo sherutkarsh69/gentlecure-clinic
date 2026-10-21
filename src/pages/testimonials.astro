@@ -119,6 +119,17 @@ import { caseResults } from '../data/caseResults.js';
     />
   </main>
   <Footer />
+
+  <!-- Image lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged case image" hidden>
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous image">&#8249;</button>
+    <figure class="lb-figure">
+      <img id="lb-img" src="" alt="" />
+      <figcaption id="lb-cap"></figcaption>
+    </figure>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Next image">&#8250;</button>
+  </div>
 </Layout>
 
 <!-- Tab switching logic -->
@@ -150,7 +161,122 @@ import { caseResults } from '../data/caseResults.js';
       });
     });
   });
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+  const imgs = [...document.querySelectorAll('.case-card .card-img')];
+  let cur = 0;
+
+  const show = i => {
+    cur = (i + imgs.length) % imgs.length;
+    lbImg.src = imgs[cur].currentSrc || imgs[cur].src;
+    lbImg.alt = imgs[cur].alt;
+    lbCap.textContent = imgs[cur].alt;
+  };
+  const open = i => {
+    show(i);
+    lb.hidden = false;
+    requestAnimationFrame(() => lb.classList.add('lightbox--open'));
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    lb.classList.remove('lightbox--open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lb.hidden = true; }, 250);
+  };
+
+  imgs.forEach((img, i) => {
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.addEventListener('click', () => open(i));
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); } });
+  });
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+  document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-figure')) close(); });
+  document.addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
 </script>
+
+<style is:global>
+  .case-card .card-img { cursor: zoom-in; }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 15, 20, 0.88);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 2rem;
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox--open { opacity: 1; }
+
+  .lb-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(0.92);
+    transition: transform 0.25s ease;
+  }
+  .lightbox--open .lb-figure { transform: scale(1); }
+
+  .lb-figure img {
+    max-width: min(1100px, 90vw);
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    background: #111;
+  }
+
+  .lb-figure figcaption {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .lb-btn {
+    position: absolute;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .lb-btn:hover { background: rgba(255,255,255,0.25); }
+  .lb-close { top: 1.25rem; right: 1.25rem; }
+  .lb-prev { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+
+  @media (max-width: 640px) {
+    .lightbox { padding: 1rem; }
+    .lb-prev, .lb-next { top: auto; bottom: 1.25rem; transform: none; }
+  }
+</style>
 
 <style>
   /* ── Hero ───────────────────────────────────────────── */
